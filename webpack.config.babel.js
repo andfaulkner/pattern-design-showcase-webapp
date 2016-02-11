@@ -1,8 +1,8 @@
-require('./register-babel');
-require('babel-register');
+// require('./register-babel');
+// require('babel-register');
 
 // fs.inotify.max_user_watches = 524288
-
+var logger = require('server/core/logger').file('webpack.config.babel.js');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 // var babelLoader = require('babel-loader');
@@ -22,6 +22,8 @@ function calcProgress(percentage) {
 	return Math.round(Math.round((percentage + 0.00001) * 100) / 100 * 100);
 }
 
+logger.info('all imports successful, declaring webpack config for export');
+
 module.exports = {
 
 	// ******************** I/O, FILE & DIR LOCATIONS ******************** 
@@ -37,24 +39,27 @@ module.exports = {
 	resolve: {
 		root: __dirname,
 		modulesDirectories: ['node_modules'],
-		extensions: ['', '.js', '.min.js', '.coffee', '.webpack.js', '.jsx']
+		extensions: ['', '.js', '.min.js', '.coffee', '.webpack.js', '.jsx'],
+		alias: {
+			react: pathToReact
+		}
 	},
 
 	// ******************** LOADERS - COMPILATION ******************** 
 	module: {
 		loaders: [
 			// load Babel - also, set up app's components to be able to hotswap
-			{test: pathToReact, loader: 'expose?React'},
 			{ test: /\.jsx?$/, 
-				loaders: ['react-hot', 'babel?cacheDirectory=true'],
+				loaders: ['babel?cacheDirectory=true'],
 				include: [path.resolve(__dirname, 'client'), path.resolve(__dirname, 'client/components')],
 				exclude: /(node_modules|bower_components)/ },
 			// make react global
 			// render Dust templates. must have absolute path to views dir
 			{test: /\.dust$/, loader: 'dustjs-linkedin', query: { path: path.join(__dirname, 'client')}},
+			{test: pathToReact, loader: 'expose?React'},
 			{test: /ReactRouter(\.min)?\.js$/, loader: 'imports?React=react'}
 		],
-		noParse: [/*pathToReact,*/pathToReactRouter]
+		noParse: [pathToReact, pathToReactRouter]
 	},
 
 	plugins: [

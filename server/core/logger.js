@@ -11,7 +11,8 @@
 */
 
 var winston = require('winston');
-import { _ } from '../../lib/lodash';
+var _ = require('lib/lodash');
+// import { _ } from '../../lib/lodash';
 var config = require('config');
 var logConfig = config.get('logging').levelConfig;
 
@@ -19,11 +20,11 @@ var logConfig = config.get('logging').levelConfig;
 *		Winston instance with transports for logging
 */
 var winstonLogger = new winston.Logger({
-	levels: 		  logConfig.levels,
-	colors: 		  logConfig.colors,
+	levels: logConfig.levels,
+	colors: logConfig.colors,
 	transports: [
 		new winston.transports.Console({
-			level: 			process.env.LOG_LEVEL || 'info',
+			level: process.env.LOG_LEVEL || 'info',
 			colorize: true
 		})
 	]

@@ -1,7 +1,7 @@
 
 var dbClient = 'postgres';
 
-export const databaseOpts = {
+var databaseOpts = {
 	development: {
 		client: dbClient,
 		connection: {
@@ -13,3 +13,5 @@ export const databaseOpts = {
 		}
 	}
 };
+
+module.exports = databaseOpts;

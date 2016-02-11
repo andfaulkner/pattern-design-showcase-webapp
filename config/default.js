@@ -1,7 +1,7 @@
-import {envVars} from './environment-vars';
-import {loggingOpts} from './config-logging';
-import {databaseOpts} from './config-database';
-import {serverOpts} from './config-server';
+var envVars = require('./environment-vars');
+var loggingOpts = require('./config-logging');
+var databaseOpts = require('./config-database');
+var serverOpts = require('./config-server');
 
 module.exports = {
 	envVars: envVars,

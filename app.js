@@ -1,7 +1,8 @@
 var path = require('path');
 require('app-module-path').addPath(path.join(__dirname, './'));
+// var _ = require('lib/lodash');
 // import { _ } from './lib/lodash'; // special lodash import with lodash v3's aliases re-included
-import { middlewares } from './server/middlewares';
+var middlewares = require('./server/middlewares');
 
 // server itself
 var koa = require('koa');

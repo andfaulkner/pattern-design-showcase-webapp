@@ -1,6 +1,8 @@
 var path = require('path');
 var favicon = require('koa-favi');
-import { _ } from '../lib/lodash'; // special lodash import with lodash v3's aliases re-included
+var _ = require('lib/lodash');
+var util = require('util');
+// import { _ } from '../lib/lodash'; // special lodash import with lodash v3's aliases re-included
 
 var logger = require('./core/logger').file('server/middlewares.js');
 
@@ -9,7 +11,16 @@ var config = require('config');
 
 // var router = require('server/api/api');
 
-export function middlewares(app) {
+var middlewares = function middlewares(app) {
+
+	var db = require('./db/db');
+	console.log(db);
+
+	console.log('\n\n\n\nmiddlewares::: db: ' + util.inspect(db, { colors: true, depth: 10 }));
+	console.log('\n\n\n\nmiddlewares::: config.get("database"): ' +
+		util.inspect(config.get('database'), { colors: true, depth: 10 }));
+	console.log('\n\n\n\nmiddlewares::: config.get("database").development: ' +
+		util.inspect(config.get('database').development, { colors: true, depth: 10 }));
 
 	var initDb = require('./db/db')(config.get('database').development, app);
 
@@ -79,7 +90,9 @@ export function middlewares(app) {
 	// 	this.body = 'Hello World';
 	// });
 
-	app.use(require('koa-static')('./.build'));
+	app.use(require('koa-static')('../.build'));
 
 	return app;
-}
+};
+
+module.exports = middlewares;

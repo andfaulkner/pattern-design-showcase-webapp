@@ -1,6 +1,6 @@
-import {envVars} from './environment-vars';
+var envVars = require('./environment-vars');
 
-export const loggingOpts = {
+var loggingOpts = {
 	//  show all requests and responses going in and out in the terminal
 	koaLog: envVars.koaLog,
 	logLevel: envVars.logLevel,
@@ -22,4 +22,6 @@ export const loggingOpts = {
 			error: 'red'
 		}
 	}
-}
+};
+
+module.exports = loggingOpts;
