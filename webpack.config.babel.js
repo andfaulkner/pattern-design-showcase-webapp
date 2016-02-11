@@ -17,6 +17,10 @@ var node_modules = path.join(__dirname, 'node_modules');
 var pathToReact = path.join(node_modules, 'react');
 var pathToReactRouter = path.join(node_modules, 'react-router');
 
+// calculate the percentage complete the build is - output formatted number
+function calcProgress(percentage) {
+	return Math.round(Math.round((percentage + 0.00001) * 100) / 100 * 100);
+}
 
 module.exports = {
 
@@ -68,7 +72,7 @@ module.exports = {
 		new webpack.optimize.OccurenceOrderPlugin(),
 		// progress bar
 		new webpack.ProgressPlugin(function handler(percentage, msg) {
-			var curPercent = Math.round(Math.round((percentage + 0.00001) * 100) / 100 * 100);
+			var curPercent = calcProgress(percentage);
 			var curString = curPercent === 100
 				? '\nCOMPILATION COMPLETE!'
 				: msg + '::: percentage complete: ';

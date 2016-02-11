@@ -17,8 +17,6 @@ var favicon = require('koa-favi');
 
 var initDb = require('server/db/db')(config.get('dbConfig').development, app);
 
-var webpackMiddleware = require('webpack-dev-middleware');
-
 //**************************** LOGGING ****************************//
 // standard winston logger
 var logger = require('server/core/logger').file('app.js');
@@ -29,6 +27,7 @@ if (config.get('logging')['koaLog']) {
 }
 //*****************************************************************//
 
+var webpackMiddleware = require('webpack-dev-middleware');
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.config.babel.js');
 var compiler = webpack(webpackConfig);

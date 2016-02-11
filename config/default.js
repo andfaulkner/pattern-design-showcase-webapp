@@ -5,6 +5,8 @@ import {serverOpts} from './config-server';
 
 module.exports = {
 
+	envVars: envVars,
+
 	environment: envVars.env,
 
 	server: serverOpts,
