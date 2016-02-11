@@ -1,0 +1,40 @@
+! favicon
+! base route
+- get koa serving a static asset
+- login package - with Koa
+- admin page - with login
+- frontend templating? (react starter?)
+- logging setup (winston)
+- folder structure
+- state management (redux)
+- build each web-component (React)
+- form handling (body parser)
+- react starter
+- koa starter
+- config module setup
+- config setup
+
+routing
+- Koa routing
+	! get route module to work
+	! work out routes
+	- create route for each ?
+
+db
+! work out table schema
+! postgres setup (including scripts)
+- ORM setup - bookshelf
+	- initialize bookshelf
+	- koa bookshelf?
+
+testing
+! install unit testing modules (mocha, request)
+- build unit tests?
+
+
+build
+- webpack setup
+- build tool setup (Broccoli)
+- base brocfile ?
+- base gulpfile
+- base webpack file

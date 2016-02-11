@@ -1,0 +1,6 @@
+{
+	"webpack": {
+		"hotPort": 2992,
+  	"excludeFromStats": "/node_modules[\\\/]react(-router)?[\\\/]/"
+	}
+}

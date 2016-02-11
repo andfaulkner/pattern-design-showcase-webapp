@@ -1,0 +1,20 @@
+var React = require('react');
+var Greeting = require('./components/greeting.jsx');
+var CommentBox = require('./components/comment-box');
+
+// import React from "react";
+// import Greeting from "./components/greeting";
+
+React.render(
+  <Greeting name="World"/>,
+  document.body
+);
+
+// require('jquery');
+// require('comment-box.js');
+// // require('file?name=[name].[ext]!../index.html');
+
+// (function() {
+// 	require('components/greeting.jsx');
+// 	console.log('hello webpack!');
+// }());
