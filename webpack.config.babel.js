@@ -58,8 +58,7 @@ module.exports = {
 	},
 
 	plugins: [
-
-		// ******************** PLUGINS: Webpack config plugins ******************** 
+		// ******************** Webpack config plugins ******************** 
 		// new webpack.OldWatchingPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoErrorsPlugin(), //to prevent hot loader autoreload if code has errs
@@ -82,7 +81,7 @@ module.exports = {
 			}
 		}),
 
-		// ******************** PLUGINS: Insert content (render html, add libs) ******************** 
+		// ******************** Insert content plugins (render html, add libs) ******************** 
 		new HtmlWebpackPlugin({
 			title: 'FlowRight',
 			template: path.join(__dirname, 'client/index.html'),
@@ -112,7 +111,7 @@ module.exports = {
 		contentBase: path.join(__dirname, '.build'),
 		host: 'localhost',
 		port: webpackConfig.hotPort,
-		hot: true,
+		// hot: true,
 		inline: true,
 		progress: true,
 		historyApiFallback: true,

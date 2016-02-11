@@ -4,14 +4,9 @@ import {databaseOpts} from './config-database';
 import {serverOpts} from './config-server';
 
 module.exports = {
-
 	envVars: envVars,
-
 	environment: envVars.env,
-
 	server: serverOpts,
-
-	dbConfig: databaseOpts,
-
+	database: databaseOpts,
 	logging: loggingOpts
 };
