@@ -1,6 +1,7 @@
 var React = require('react');
 var Greeting = require('./components/greeting.jsx');
 var CommentBox = require('./components/comment-box');
+var ReactDOM = require('react-dom');
 
 // import React from "react";
 // import Greeting from "./components/greeting";
@@ -8,6 +9,11 @@ var CommentBox = require('./components/comment-box');
 React.render(
   <Greeting name="World"/>,
   document.body
+);
+
+ReactDOM.render(
+  <div>Bonjour!</div>,
+  document.getElementById('container')
 );
 
 // require('jquery');

@@ -10,6 +10,8 @@ var app = koa();
 // application configuration object
 var config = require('config');
 
+console.log(config);
+
 // var router = require('server/api/api');
 var favicon = require('koa-favi');
 
@@ -97,4 +99,4 @@ app.use(function *(next) {
 app.use(require('koa-static')('./.build'));
 //*********************************************************************//
 
-app.listen(3000);
+app.listen(config.get('server').port);
