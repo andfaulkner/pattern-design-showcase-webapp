@@ -23,8 +23,7 @@ module.exports = {
 	// ******************** I/O, FILE & DIR LOCATIONS ******************** 
 	context: __dirname,
 	entry: [
-		'webpack-dev-server/client?http://localhost:3001',
-		'webpack/hot/dev-server',
+		'webpack-hot-middleware/client?http://localhost:3001',
 		path.join(__dirname, '/client/main.js')
 	],
 	output: {
@@ -41,19 +40,17 @@ module.exports = {
 	module: {
 		loaders: [
 			// load Babel - also, set up app's components to be able to hotswap
+			{test: pathToReact, loader: 'expose?React'},
 			{ test: /\.jsx?$/, 
-				loaders: ['react-hot', 'babel'],
-				include: [
-					path.resolve(__dirname, 'client'),
-					path.resolve(__dirname, 'client/components')
-				],
+				loaders: ['react-hot', 'babel?cacheDirectory=true'],
+				include: [path.resolve(__dirname, 'client'), path.resolve(__dirname, 'client/components')],
 				exclude: /(node_modules|bower_components)/ },
 			// make react global
-			{ test: pathToReact, loader: 'expose?React' },
 			// render Dust templates. must have absolute path to views dir
-			{ test: /\.dust$/, loader: 'dustjs-linkedin', query: { path: path.join(__dirname, 'client') }
-		}],
-		noParse: [pathToReact, pathToReactRouter]
+			{test: /\.dust$/, loader: 'dustjs-linkedin', query: { path: path.join(__dirname, 'client')}},
+			{test: /ReactRouter(\.min)?\.js$/, loader: 'imports?React=react'}
+		],
+		noParse: [/*pathToReact,*/pathToReactRouter]
 	},
 
 	plugins: [
@@ -86,7 +83,8 @@ module.exports = {
 			title: 'FlowRight',
 			template: path.join(__dirname, 'client/index.html'),
 			filename: 'index.html',
-			js: 'index.js'
+			inject: 'body'
+			// js: 'index.js'
 		}),
 		// new HtmlWebpackPlugin({
 		// 	title: 'Admin control panel',
@@ -94,8 +92,8 @@ module.exports = {
 		// 	filename: 'admin.html'
 		// }),
 		new webpack.ProvidePlugin({
-			jquery: 'jQuery',
-			$: 'jQuery',
+			jquery: 'jquery',
+			$: 'jquery',
 			_: 'lodash',
 			lodash: 'lodash'
 		})
@@ -105,6 +103,7 @@ module.exports = {
 	colors: true,
 	// watch: true,		// watching is done by gulp, because webpack's watching is broken
 	bail: true,
+	debug: true,
 	devServer: {
 		contentBase: path.join(__dirname, '.build'),
 		host: 'localhost',
